@@ -14,7 +14,7 @@ class User < ApplicationRecord
   
   #お気に入り
   has_many :favorites
-  has_many :fav_posts, through: :favorites, source: :micropost
+  has_many :likes, through: :favorites, source: :micropost
   
   
   def favorite(micropost)
@@ -26,8 +26,8 @@ class User < ApplicationRecord
     favorite.destroy if favorite
   end
   
-  def fav_post?(micropost)
-    self.fav_posts.include?(micropost)
+  def like?(micropost)
+    self.likes.include?(micropost)
   end
    
   def follow(other_user)
